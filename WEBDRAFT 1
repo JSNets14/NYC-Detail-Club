@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NYC Detail Club – Luxury Mobile Detailing in New York City</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NYC Detail Club provides premium mobile detailing services for luxury vehicles in New York City. White-glove care delivered to your building, garage, or driveway.">
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0c0f18;
+      --accent: #f5c451;
+      --accent-soft: rgba(245, 196, 81, 0.12);
+      --text: #f5f5f7;
+      --muted: #a3a3b1;
+      --card: #11141f;
+      --border-subtle: rgba(255,255,255,0.06);
+      --danger: #ff4d4f;
+      --max-width: 1120px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 24px 60px rgba(0,0,0,0.65);
+      --shadow-subtle: 0 10px 30px rgba(0,0,0,0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #151829 0, #05060a 55%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* Layout helpers */
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 6, 10, 0.8);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(245,196,81,0.25);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(17,20,31,0.9);
+    }
+
+    .badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--muted);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn-primary, .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 20px;
+      font-size: 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #f7d889);
+      color: #141414;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .btn-primary span.icon {
+      font-size: 16px;
+      translate: 0 1px;
+    }
+
+    .btn-ghost {
+      background: rgba(10, 12, 20, 0.85);
+      color: var(--text);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-ghost span.icon {
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 28px;
+      letter-spacing: .03em;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    /* Header */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 6, 10, 0.96) 0,
+        rgba(5, 6, 10, 0.94) 60%,
+        transparent 100%
+      );
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #ffffff 0, #f5c451 26%, #000 75%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08),
+                  0 16px 40px rgba(0,0,0,0.75);
+      font-size: 15px;
+      font-weight: 600;
+      color: #05060a;
+    }
+
+    .logo-text-main {
+      font-size: 16px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), #fff7d1);
+      transition: width .18s ease-out;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(10, 12, 20, 0.95);
+      border: 1px solid rgba(245,196,81,0.5);
+      font-size: 12px;
+      color: var(--accent);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    }
+
+    .nav-cta span.phone {
+      font-weight: 600;
+      color: #fff7d1;
+    }
+
+    .nav-cta span.icon {
+      font-size: 14px;
+      translate: 0 1px;
+    }
+
+    /* Mobile nav */
+
+    .nav-toggle {
+      display: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5,6,10,0.95);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle-line {
+      width: 16px;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .nav-toggle-line::before,
+    .nav-toggle-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 1.5px;
+      background: #fff;
+      border-radius: 999px;
+    }
+
+    .nav-toggle-line::before {
+      top: -5px;
+    }
+
+    .nav-toggle-line::after {
+      top: 5px;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      padding: 14px 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-mobile a {
+      padding: 3px 0;
+    }
+
+    .nav-mobile .nav-cta {
+      width: 100%;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .nav-mobile.open {
+      display: flex;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 70px 0 80px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 40px);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin: 16px 0 14px;
+    }
+
+    .hero-body {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .hero-highlight {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(10,12,20,0.92);
+      min-width: 150px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .hero-highlight-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .hero-highlight-value {
+      font-size: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at 0 0, rgba(245,196,81,0.09) 0, transparent 55%),
+                  radial-gradient(circle at 100% 0, rgba(104,137,255,0.12) 0, transparent 55%),
+                  #05060a;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-card-inner {
+      border-radius: 18px;
+      padding: 18px;
+      background: radial-gradient(circle at 50% -30%, rgba(255,255,255,0.13) 0, transparent 60%),
+                  linear-gradient(145deg, rgba(17,20,31,0.96), rgba(5,6,10,0.98));
+      border: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 18px;
+    }
+
+    .hero-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.2) 0, transparent 55%),
+                  radial-gradient(circle at 10% 90%, rgba(245,196,81,0.35) 0, transparent 55%),
+                  #05060a;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 18px;
+    }
+
+    .hero-slider-content {
+      max-width: 215px;
+    }
+
+    .hero-slider-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-slider-title {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .hero-slider-text {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-slider-badge {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      padding: 4px 10px;
+      background: rgba(5,6,10,0.86);
+      border-radius: 999px;
+      border: 1px solid rgba(245,196,81,0.55);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-slider-badge span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-slider-car {
+      width: 48%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 30% 10%, rgba(255,255,255,0.35) 0, transparent 50%),
+        radial-gradient(circle at 70% 90%, rgba(0,0,0,0.9) 0, transparent 80%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-slider-car::before {
+      content: "";
+      position: absolute;
+      inset: 20% 10%;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,0.2), rgba(0,0,0,0.85)),
+        linear-gradient(90deg, rgba(106,130,255,0.9), rgba(245,196,81,0.95));
+      mix-blend-mode: lighten;
+      opacity: 0.9;
+    }
+
+    .hero-slider-car::after {
+      content: "";
+      position: absolute;
+      inset: 40% 5% 10%;
+      border-radius: 32px;
+      background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.86) 0, transparent 56%),
+                  linear-gradient(145deg, #05060a, #10121a);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.95);
+    }
+
+    .hero-card-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-card-bottom-left {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-card-bottom-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22263a, #05060a);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Services */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      border-radius: var(--radius-lg);
+      background: rgba(10, 12, 20, 0.96);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 18px;
+      box-shadow: var(--shadow-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service-name {
+      font-size: 15px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .service-price {
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .service-body {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .service-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .service-list {
+      margin: 8px 0 0;
+      padding-left: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .service-list li {
+      margin-bottom: 4px;
+    }
+
+    .service-cta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* Membership */
+
+    .membership {
+      background: radial-gradient(circle at top, rgba(245,196,81,0.16) 0, transparent 60%),
+                  var(--bg-alt);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .membership-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .membership-card {
+      border-radius: var(--radius-xl);
+      background: rgba(5, 6, 10, 0.96);
+      border: 1px solid rgba(255,255,255,0.09);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .membership-list {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .membership-list-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .check {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(245,196,81,0.8);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .membership-pricing-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+      font-size: 13px;
+    }
+
+    .membership-tier {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 10px 11px;
+      background: rgba(10, 12, 20, 0.95);
+    }
+
+    .membership-tier-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--muted);
+    }
+
+    .membership-tier-price {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    .membership-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .membership-faq {
+      display: grid;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .membership-faq-item {
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      padding: 10px 12px;
+      background: rgba(5, 6, 10, 0.96);
+    }
+
+    .membership-faq-item strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+
+    /* Service area + CTA band */
+
+    .band {
+      margin-top: 26px;
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: linear-gradient(120deg, rgba(245,196,81,0.12), rgba(13,109,186,0.24));
+      border: 1px solid rgba(245,196,81,0.6);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    /* Gallery */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 16px;
+    }
+
+    .gallery-large,
+    .gallery-small {
+      border-radius: var(--radius-lg);
+      background: #05060a;
+      border: 1px solid var(--border-subtle);
+      padding: 10px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .gallery-inner {
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.45) 0, transparent 55%),
+                  radial-gradient(circle at 70% 100%, rgba(0,0,0,0.95) 0, transparent 70%);
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-inner::after {
+      content: "Before / After";
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(5, 6, 10, 0.88);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--muted);
+    }
+
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-mini {
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.3) 0, transparent 55%),
+                  rgba(5, 6, 10, 0.96);
+      height: 90px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .gallery-caption {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Contact */
+
+    .contact {
+      background: var(--bg-alt);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.6fr);
+      gap: 26px;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 20px;
+      background: rgba(5, 6, 10, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+
+    .field label {
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(7, 9, 18, 0.96);
+      padding: 9px 10px;
+      color: #f5f5f7;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #5f6272;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .contact-details {
+      font-size: 13px;
+      color: var(--muted);
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-detail {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .contact-detail-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--muted);
+    }
+
+    .contact-detail-value {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .contact-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding: 18px 0 22px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5, 6, 10, 0.98);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .membership-grid,
+      .gallery-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        height: 62px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery-inner {
+        height: 180px;
+      }
+
+      .band {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="container">
+        <div class="header-inner">
+          <a href="#top" class="logo">
+            <div class="logo-mark">NY</div>
+            <div>
+              <div class="logo-text-main">NYC Detail Club</div>
+              <div class="logo-text-sub">Mobile • Manhattan • Brooklyn</div>
+            </div>
+          </a>
+
+          <nav class="nav">
+            <a href="#services">Services</a>
+            <a href="#membership">Membership</a>
+            <a href="#gallery">Results</a>
+            <a href="#contact">Book Now</a>
+            <a href="tel:+16467965433" class="nav-cta">
+              <span class="icon">📞</span>
+              <span class="phone">(646) 796-5433</span>
+            </a>
+          </nav>
+
+          <button class="nav-toggle" aria-label="Toggle navigation" id="navToggle">
+            <div class="nav-toggle-line"></div>
+          </button>
+        </div>
+
+        <div class="nav-mobile" id="navMobile">
+          <a href="#services">Services</a>
+          <a href="#membership">Membership</a>
+          <a href="#gallery">Results</a>
+          <a href="#contact">Book Now</a>
+          <a href="tel:+16467965433" class="nav-cta">
+            <span class="icon">📞</span>
+            <span class="phone">(646) 796-5433</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="pill">
+              <span class="pill-dot"></span>
+              <span>Luxury mobile detailing for New York City</span>
+            </div>
+            <h1 class="hero-title">
+              White-glove detail,<br>delivered to your building.
+            </h1>
+            <p class="hero-body">
+              NYC Detail Club brings studio-level detailing directly to your garage, driveway,
+              or curbside. From daily drivers in SoHo to weekend toys in Tribeca, we treat every
+              vehicle like it just rolled out of the showroom.
+            </p>
+
+            <div class="btn-row">
+              <a href="#contact" class="btn-primary">
+                <span>Request a detail</span>
+                <span class="icon">➝</span>
+              </a>
+              <a href="#services" class="btn-ghost">
+                <span>View packages</span>
+              </a>
+            </div>
+
+            <div class="hero-highlights">
+              <div class="hero-highlight">
+                <div class="hero-highlight-label">Fully Mobile</div>
+                <div class="hero-highlight-value">Manhattan • Brooklyn • Queens</div>
+                <div class="service-meta">We come to your parking garage, townhouse, or driveway.</div>
+              </div>
+              <div class="hero-highlight">
+                <div class="hero-highlight-label">Young & Professional</div>
+                <div class="hero-highlight-value">Student-run, quality-driven</div>
+                <div class="service-meta">Built by NYC high-school detailers obsessed with clean cars.</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Featured package">
+            <div class="hero-card-inner">
+              <div class="hero-slider">
+                <div class="hero-slider-content">
+                  <div class="hero-slider-label">Featured Package</div>
+                  <div class="hero-slider-title">Diamond NYC Detail</div>
+                  <div class="hero-slider-text">
+                    Our top-tier full interior & exterior refresh. Perfect for lease returns,
+                    new purchases, or that first spring weekend in the city.
+                  </div>
+                </div>
+
+                <div class="hero-slider-car"></div>
+
+                <div class="hero-slider-badge">
+                  <span class="dot"></span>
+                  <span>Garage-friendly equipment</span>
+                </div>
+              </div>
+
+              <div class="hero-card-bottom">
+                <div class="hero-card-bottom-left">
+                  <div class="badge">NYC Detail Club</div>
+                  <div>Serving Manhattan, Brooklyn, and select parts of Queens.</div>
+                </div>
+                <div class="hero-card-bottom-right">
+                  <div class="hero-avatar">JS</div>
+                  <div style="font-size:12px;">
+                    <strong>Text for a quote</strong><br>
+                    <span style="color:var(--muted);">(646) 796-5433</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section" id="services">
+        <div class="container">
+          <header class="section-header">
+            <div class="section-eyebrow">Services & Packages</div>
+            <h2 class="section-title">Simple NYC-friendly packages</h2>
+            <p class="section-subtitle">
+              Designed around real New York City vehicles: street-parked daily drivers, garage-kept
+              cars, and everything in between. Pricing may vary by size and condition.
+            </p>
+          </header>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-card-header">
+                <div>
+                  <div class="service-name">City Wash</div>
+                  <div class="service-meta">Quick refresh • 60–90 minutes</div>
+                </div>
+                <div class="service-price">From $90</div>
+              </div>
+              <p class="service-body">
+                Ideal for well-kept vehicles that need a professional wash without a full
+                interior reset. Perfect between full details or membership visits.
+              </p>
+              <ul class="service-list">
+                <li>pH-balanced hand wash & wheel faces</li>
+                <li>Touchless dry & light tire dressing</li>
+                <li>Glass cleaned inside & out</li>
+                <li>Light interior vacuum & wipe-down</li>
+              </ul>
+              <div class="service-cta">Best for: weekly / bi-weekly maintenance.</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card-header">
+                <div>
+                  <div class="service-name">Gold Interior</div>
+                  <div class="service-meta">Deep interior • 2–3 hours</div>
+                </div>
+                <div class="service-price">From $210</div>
+              </div>
+              <p class="service-body">
+                For subway dust, city crumbs, and long-term build-up. We reset the cabin so it
+                actually feels clean again, not just “wiped down”.
+              </p>
+              <ul class="service-list">
+                <li>Thorough vacuum (seats, mats, trunk)</li>
+                <li>Steam cleaning on high-touch areas</li>
+                <li>Leather cleaned & conditioned / fabric shampooed</li>
+                <li>Interior plastics dressed to a natural finish</li>
+              </ul>
+              <div class="service-cta">Popular for: families, rideshare, lease returns.</div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-card-header">
+                <div>
+                  <div class="service-name">Diamond Full Detail</div>
+                  <div class="service-meta">Inside & out • 3–4 hours</div>
+                </div>
+                <div class="service-price">From $320</div>
+              </div>
+              <p class="service-body">
+                Our signature “new car” reset: full interior, full exterior, and protection
+                tailored to NYC streets, garages, and weather.
+              </p>
+              <ul class="service-list">
+                <li>Gold Interior Detail</li>
+                <li>Decontamination wash & clay bar treatment</li>
+                <li>Single-step gloss enhancement (where safe)</li>
+                <li>6–9 month paint sealant for added protection</li>
+              </ul>
+              <div class="service-cta">Great before: summer in the Hamptons, big events, or photos.</div>
+            </article>
+          </div>
+
+          <div style="font-size:11px;color:var(--muted);margin-top:10px;">
+            * Final pricing depends on vehicle size and condition. Ask about multi-car and building rates.
+          </div>
+        </div>
+      </section>
+
+      <!-- MEMBERSHIP -->
+      <section class="section membership" id="membership">
+        <div class="container">
+          <header class="section-header">
+            <div class="section-eyebrow">Membership</div>
+            <h2 class="section-title">Keep it clean all year in the city</h2>
+            <p class="section-subtitle">
+              A straightforward monthly plan that keeps your car looking sharp without you ever
+              needing to think about it. We handle the schedule—you just toss us the keys.
+            </p>
+          </header>
+
+          <div class="membership-grid">
+            <div>
+              <div class="membership-card">
+                <div class="badge">NYC Detail Club Membership</div>
+                <h3 style="margin:8px 0 4px;font-size:18px;">Monthly maintenance, on autopilot.</h3>
+                <p style="font-size:13px;color:var(--muted);">
+                  Membership is built around your actual driving. Based on your first visit,
+                  we recommend a plan that keeps your car consistently clean without over-servicing.
+                </p>
+
+                <div class="membership-list">
+                  <div class="membership-list-item">
+                    <span class="check">✓</span>
+                    <span>1× Full interior & exterior detail to start your membership.</span>
+                  </div>
+                  <div class="membership-list-item">
+                    <span class="check">✓</span>
+                    <span>Monthly or bi-weekly maintenance visits scheduled around your garage or building hours.</span>
+                  </div>
+                  <div class="membership-list-item">
+                    <span class="check">✓</span>
+                    <span>Priority booking for last-minute pre-trip or post-trip cleans.</span>
+                  </div>
+                  <div class="membership-list-item">
+                    <span class="check">✓</span>
+                    <span>Discounted add-ons (pet hair removal, ozone treatment, extra vehicles).</span>
+                  </div>
+                </div>
+
+                <div class="membership-pricing-row">
+                  <div class="membership-tier">
+                    <div class="membership-tier-label">Sedans / Coupes</div>
+                    <div class="membership-tier-price">From $140 / month</div>
+                    <div class="membership-note">Based on 1× maintenance visit per month.</div>
+                  </div>
+                  <div class="membership-tier">
+                    <div class="membership-tier-label">SUVs / Trucks</div>
+                    <div class="membership-tier-price">From $165 / month</div>
+                    <div class="membership-note">Ask about multi-car household pricing.</div>
+                  </div>
+                </div>
+
+                <div class="band">
+                  <div>
+                    <div style="font-size:12px;font-weight:600;">How to join</div>
+                    <div style="font-size:12px;color:var(--muted);">
+                      Book a Diamond Full Detail first—we’ll inspect the vehicle and build a plan.
+                    </div>
+                  </div>
+                  <a href="#contact" class="btn-primary" style="padding:8px 16px;font-size:13px;">
+                    Join the waitlist
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="membership-faq">
+                <div class="membership-faq-item">
+                  <strong>Where do you operate?</strong>
+                  Manhattan below 125th, parts of Brooklyn (Williamsburg, Brooklyn Heights,
+                  Park Slope, etc.), and select Queens neighborhoods. Text us with your ZIP
+                  and garage situation and we’ll confirm.
+                </div>
+                <div class="membership-faq-item">
+                  <strong>Do you need water or power?</strong>
+                  In most cases, we can work with building power or garage outlets. For
+                  curbside or brownstones, we’ll talk through logistics before confirming a booking.
+                </div>
+                <div class="membership-faq-item">
+                  <strong>Apartment & building partnerships</strong>
+                  We love working with doormen and property managers. Ask about preferred
+                  rates for residents or regularly scheduled building detail days.
+                </div>
+                <div class="membership-faq-item">
+                  <strong>Hamptons & summer details</strong>
+                  Heading out east? We can help prep your car in the city before you go,
+                  or coordinate with local partners for on-site Hamptons details.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section" id="gallery">
+        <div class="container">
+          <header class="section-header">
+            <div class="section-eyebrow">Results</div>
+            <h2 class="section-title">Before & afters that feel like a new car</h2>
+            <p class="section-subtitle">
+              Replace these placeholders with your own photos of actual NYC cars you’ve worked on
+              (street-parked, garage-kept, winter-salted, all of it).
+            </p>
+          </header>
+
+          <div class="gallery-grid">
+            <div class="gallery-large">
+              <div class="gallery-inner"></div>
+              <div class="gallery-caption">
+                Example: street-parked SUV after winter salt removal, paint decontamination, and
+                interior reset.
+              </div>
+            </div>
+
+            <div class="gallery-small">
+              <div class="gallery-row">
+                <div class="gallery-mini"></div>
+                <div class="gallery-mini"></div>
+              </div>
+              <div class="gallery-row" style="margin-top:10px;">
+                <div class="gallery-mini"></div>
+                <div class="gallery-mini"></div>
+              </div>
+              <div class="gallery-caption">
+                Tip: shoot in garage lighting and daylight. Keep framing consistent for clean
+                before / after comparisons.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section contact" id="contact">
+        <div class="container">
+          <header class="section-header">
+            <div class="section-eyebrow">Booking & Contact</div>
+            <h2 class="section-title">Ready to get on the schedule?</h2>
+            <p class="section-subtitle">
+              Fill out the form below or text us a few quick details about your car and where
+              it lives in the city. We’ll confirm pricing and availability as soon as we can.
+            </p>
+          </header>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <!-- This form doesn't actually submit anywhere yet.
+                   Hook it up to your backend or a service like Formspree / Netlify Forms. -->
+              <form class="contact-form">
+                <div class="field-row">
+                  <div class="field">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="First & last name">
+                  </div>
+                  <div class="field">
+                    <label for="phone">Mobile</label>
+                    <input id="phone" name="phone" type="tel" placeholder="(646) 000-0000">
+                  </div>
+                </div>
+
+                <div class="field-row">
+                  <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com">
+                  </div>
+                  <div class="field">
+                    <label for="location">Neighborhood / ZIP</label>
+                    <input id="location" name="location" type="text" placeholder="SoHo • 10012">
+                  </div>
+                </div>
+
+                <div class="field-row">
+                  <div class="field">
+                    <label for="vehicle">Vehicle</label>
+                    <input id="vehicle" name="vehicle" type="text" placeholder="2023 BMW X5, black">
+                  </div>
+                  <div class="field">
+                    <label for="package">Interested in</label>
+                    <select id="package" name="package">
+                      <option value="">Select a package</option>
+                      <option>City Wash</option>
+                      <option>Gold Interior Detail</option>
+                      <option>Diamond Full Detail</option>
+                      <option>Membership</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="message">Anything we should know?</label>
+                  <textarea id="message" name="message" placeholder="Garage access, pet hair, spills, special requests, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary" style="margin-top:6px;">
+                  <span>Send request</span>
+                  <span class="icon">➝</span>
+                </button>
+                <p class="contact-note">
+                  By submitting, you’re just starting a conversation—no charge until we confirm
+                  your booking, date, and price.
+                </p>
+              </form>
+            </div>
+
+            <div class="contact-details">
+              <div>
+                <div class="contact-detail-label">Text or call</div>
+                <div class="contact-detail-value">
+                  <a href="tel:+16467965433">(646) 796-5433</a>
+                </div>
+              </div>
+
+              <div>
+                <div class="contact-detail-label">Email</div>
+                <div class="contact-detail-value">
+                  <a href="mailto:hamptonsautoclub@gmail.com">hamptonsautoclub@gmail.com</a>
+                  <div style="font-size:11px;color:var(--muted);margin-top:2px;">
+                    You can update this to a dedicated NYC Detail Club email later.
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="contact-detail-label">Typical hours</div>
+                <div class="contact-detail-value">
+                  Weekdays: 3:30pm–7:30pm<br>
+                  Weekends: 9:00am–6:00pm<br>
+                  <span style="color:var(--muted);font-size:11px;">Subject to school & exam schedules.</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="contact-detail-label">Service area</div>
+                <div class="contact-detail-value">
+                  Manhattan below 125th Street, parts of Brooklyn and Queens. For garages with
+                  special access requirements, please include a note in your request.
+                </div>
+                <div class="contact-pill-row">
+                  <span class="tag">SoHo</span>
+                  <span class="tag">West Village</span>
+                  <span class="tag">Upper East Side</span>
+                  <span class="tag">Brooklyn Heights</span>
+                  <span class="tag">Williamsburg</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="contact-detail-label">Social</div>
+                <div class="contact-detail-value">
+                  @nycdetailclub on Instagram & TikTok (claim the handle you actually use).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> NYC Detail Club. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#top">Back to top</a>
+          <a href="#services">Services</a>
+          <a href="#membership">Membership</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+
+    if (navToggle && navMobile) {
+      navToggle.addEventListener('click', () => {
+        navMobile.classList.toggle('open');
+      });
+
+      navMobile.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+          navMobile.classList.remove('open');
+        });
+      });
+    }
+
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
